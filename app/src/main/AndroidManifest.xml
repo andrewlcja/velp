@@ -27,7 +27,8 @@
         <activity
             android:name=".activities.Profile"
             android:label="@string/title_activity_profile"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
+        <activity android:name=".activities.ElderlyProfile"></activity>
     </application>
 
 </manifest>

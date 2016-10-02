@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
@@ -21,8 +22,10 @@ public class Profile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_layout);
         setSupportActionBar(toolbar);
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Janice Tan");
 
@@ -50,6 +53,7 @@ public class Profile extends AppCompatActivity {
                 return true;
             case R.id.action_logout:
                 Intent intent2 = new Intent(this, Login.class);
+                intent2.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent2);
                 finish();
                 return true;
@@ -58,4 +62,8 @@ public class Profile extends AppCompatActivity {
         }
     }
 
+    public void goToElderlyProfile(View view) {
+        Intent intent = new Intent(this, ElderlyProfile.class);
+        startActivity(intent);
+    }
 }
