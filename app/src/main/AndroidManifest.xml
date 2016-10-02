@@ -28,7 +28,15 @@
             android:name=".activities.Profile"
             android:label="@string/title_activity_profile"
             android:theme="@style/AppTheme" />
-        <activity android:name=".activities.ElderlyProfile"></activity>
+        <activity android:name=".activities.ElderlyProfile" />
+        <activity
+            android:name=".activities.AddElderly"
+            android:label="@string/title_activity_add_elderly"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".activities.CreateRequest"
+            android:label="@string/title_activity_create_request"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

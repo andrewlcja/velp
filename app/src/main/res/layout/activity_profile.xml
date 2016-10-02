@@ -186,16 +186,28 @@
                             android:background="?android:attr/selectableItemBackground"
                             android:text="Add"
                             android:textAllCaps="false"
+                            android:onClick="goToAddElderlyProfile"
                             android:textColor="@color/colorSecondary"
                             android:textSize="14sp" />
                     </android.support.v7.widget.CardView>
                 </LinearLayout>
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    android:id="@+id/task1_empty_state"
+                    android:text="No elderlies under your care"
+                    android:textSize="16sp"
+                    android:textColor="@color/colorLabel"/>
+
                 <LinearLayout
+                    android:id="@+id/task1_success_state"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="?android:attr/selectableItemBackground"
                     android:clickable="true"
+                    android:visibility="gone"
                     android:onClick="goToElderlyProfile"
                     android:orientation="horizontal"
                     android:padding="16dp">

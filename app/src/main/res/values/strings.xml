@@ -16,4 +16,6 @@
     </string>
     <string name="title_activity_home">Home</string>
     <string name="title_activity_profile">Profile</string>
+    <string name="title_activity_add_elderly">AddElderly</string>
+    <string name="title_activity_create_request">CreateRequest</string>
 </resources>

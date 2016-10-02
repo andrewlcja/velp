@@ -7,4 +7,5 @@
     <color name="windowColor">#EDEDED</color>
     <color name="colorTertiary">#C6C6C6</color>
     <color name="colorLabel">#9E9E9E</color>
+    <color name="iconColor">#5e5e5e</color>
 </resources>
