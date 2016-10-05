@@ -41,7 +41,9 @@
         <activity android:name=".activities.VolunteerProfile" />
         <activity android:name=".activities.Search" />
         <activity android:name=".activities.ViewSearchRequest" />
-        <activity android:name=".activities.ViewVolunteeredRequest"></activity>
+        <activity android:name=".activities.ViewVolunteeredRequest" />
+        <activity android:name=".activities.ViewRecurringRequest" />
+        <activity android:name=".activities.ViewSearchRecurringRequest"></activity>
     </application>
 
 </manifest>

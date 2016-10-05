@@ -23,6 +23,7 @@ import idp.velp.util.CircleTransform;
 public class VolunteerProfile extends AppCompatActivity {
     private SharedPreferences sharedPreferences;
     private boolean task4;
+    private boolean task7;
     private boolean volunteer;
 
     @Override
@@ -40,6 +41,7 @@ public class VolunteerProfile extends AppCompatActivity {
         sharedPreferences = getSharedPreferences("prefs", Context.MODE_PRIVATE);
 
         task4 = sharedPreferences.getBoolean("task4", false);
+        task7 = sharedPreferences.getBoolean("task7", false);
         volunteer = sharedPreferences.getBoolean("volunteer", false);
 
         ImageView volunteerPic = (ImageView) findViewById(R.id.volunteer_pic);
@@ -50,6 +52,7 @@ public class VolunteerProfile extends AppCompatActivity {
         TextView volunteerNRICLabel = (TextView) findViewById(R.id.volunteer_nric_label);
         TextView volunteerDOB = (TextView) findViewById(R.id.volunteer_dob);
         TextView volunteerDOBLabel = (TextView) findViewById(R.id.volunteer_dob_label);
+        TextView volunteerHours = (TextView) findViewById(R.id.volunteer_hours);
         View volunteerDOBDivider = findViewById(R.id.volunteer_dob_divider);
 
         if (!volunteer && task4) {
@@ -60,6 +63,10 @@ public class VolunteerProfile extends AppCompatActivity {
             volunteerDOB.setVisibility(View.GONE);
             volunteerDOBLabel.setVisibility(View.GONE);
             volunteerDOBDivider.setVisibility(View.GONE);
+
+            if (task7) {
+                volunteerHours.setText("17.5");
+            }
         }
     }
 

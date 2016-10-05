@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="4dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tan Siew Mei"
+                android:id="@+id/dialog_name"
+                android:textColor="@android:color/black" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Female"
+                android:id="@+id/dialog_gender"
+                android:textColor="@color/colorLabel"
+                android:textSize="14dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="77 years old"
+                android:id="@+id/dialog_age"
+                android:textColor="@color/colorLabel"
+                android:textSize="14dp" />
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/elderly_pic"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_gravity="right" />
+        </FrameLayout>
+    </LinearLayout>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="4dp"
+        android:text="Date"
+        android:textColor="@color/colorLabel"
+        android:textSize="16dp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="4dp"
+        android:text="25 Oct 2016"
+        android:textColor="@android:color/black" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="4dp"
+        android:text="Time"
+        android:textColor="@color/colorLabel"
+        android:textSize="16dp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="4dp"
+        android:text="7.00am - 9.00am"
+        android:textColor="@android:color/black" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="4dp"
+        android:text="Stated Volunteering Hours"
+        android:textColor="@color/colorLabel"
+        android:textSize="16dp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="4dp"
+        android:text="2"
+        android:textColor="@android:color/black" />
+
+
+    <LinearLayout
+        android:id="@+id/task6b_empty_state"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="4dp"
+            android:text="Actual Volunteering Hours"
+            android:textColor="@color/colorLabel"
+            android:textSize="16dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:text="2.5"
+            android:textColor="@android:color/black" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="vertical">
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/task6b_success_state"
+            android:visibility="gone"
+            style="@style/SeniorTheme"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/time_layout"
+            android:textColorHint="@color/colorTertiary"
+            app:hintTextAppearance="@style/SecondaryLabelTheme">
+            <EditText
+                android:id="@+id/request_location"
+                style="@style/SeniorTheme"
+                android:text="2.5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Actual Volunteering Hours"
+                android:inputType="text"
+                android:theme="@style/SecondaryEditTextTheme" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/request_additional_information_layout"
+            style="@style/SeniorTheme"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/request_gender_layout"
+            app:counterEnabled="true"
+            app:counterMaxLength="500"
+            android:textColorHint="@color/colorTertiary"
+            app:hintTextAppearance="@style/SecondaryLabelTheme">
+
+            <EditText
+                android:id="@+id/request_addtional_information"
+                style="@style/SeniorTheme"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top|left"
+                android:inputType="textCapSentences|textMultiLine"
+                android:maxLines="5"
+                android:hint="Comments"
+                android:maxLength="500"
+                android:theme="@style/SecondaryEditTextTheme" />
+        </android.support.design.widget.TextInputLayout>
+    </LinearLayout>
+</LinearLayout>

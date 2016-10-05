@@ -245,12 +245,57 @@
             </LinearLayout>
 
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/repeat_layout"
+                android:layout_below="@id/request_gender_layout"
+                android:orientation="horizontal">
+
+                <android.support.design.widget.TextInputLayout
+                    style="@style/SeniorTheme"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:textColorHint="@color/colorTertiary"
+                    app:hintTextAppearance="@style/SecondaryLabelTheme">
+
+                    <EditText
+                        android:id="@+id/request_repeat"
+                        style="@style/SeniorTheme"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Repeat"
+                        android:onClick="showRepeatOptions"
+                        android:inputType="text"
+                        android:theme="@style/SecondaryEditTextTheme" />
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    style="@style/SeniorTheme"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:textColorHint="@color/colorTertiary"
+                    app:hintTextAppearance="@style/SecondaryLabelTheme">
+
+                    <EditText
+                        android:id="@+id/request_until"
+                        style="@style/SeniorTheme"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Until"
+                        android:inputType="text"
+                        android:theme="@style/SecondaryEditTextTheme" />
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/request_additional_information_layout"
                 style="@style/SeniorTheme"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/request_gender_layout"
+                android:layout_below="@id/repeat_layout"
                 app:counterEnabled="true"
                 app:counterMaxLength="500"
                 android:textColorHint="@color/colorTertiary"
@@ -267,6 +312,7 @@
                     android:maxLength="500"
                     android:theme="@style/SecondaryEditTextTheme" />
             </android.support.design.widget.TextInputLayout>
+
         </RelativeLayout>
     </ScrollView>
 

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
@@ -12,11 +13,17 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
+import com.squareup.picasso.Picasso;
+
 import idp.velp.R;
+import idp.velp.util.CircleTransform;
 
 public class Home extends AppCompatActivity {
     private SharedPreferences sharedPreferences;
@@ -24,6 +31,10 @@ public class Home extends AppCompatActivity {
     private boolean task2;
     private boolean task4;
     private boolean task5;
+    private boolean task6a;
+    private boolean task6b;
+    private boolean task7;
+    private boolean task8;
     private boolean volunteer;
 
     @Override
@@ -40,18 +51,28 @@ public class Home extends AppCompatActivity {
         task2 = sharedPreferences.getBoolean("task2", false);
         task4 = sharedPreferences.getBoolean("task4", false);
         task5 = sharedPreferences.getBoolean("task5", false);
+        task6a = sharedPreferences.getBoolean("task6a", false);
+        task6b = sharedPreferences.getBoolean("task6b", false);
+        task7 = sharedPreferences.getBoolean("task7", false);
+        task8 = sharedPreferences.getBoolean("task8", false);
         volunteer = sharedPreferences.getBoolean("volunteer", false);
 
         FloatingActionButton fabAdd = (FloatingActionButton) findViewById(R.id.fab_add);
         FloatingActionButton fabSearch = (FloatingActionButton) findViewById(R.id.fab_search);
 
-        CardView task2SuccessState = (CardView) findViewById(R.id.task2_success_state);
-        LinearLayout task2EmptyState = (LinearLayout) findViewById(R.id.task2_empty_state);
-        TextView task2EmptyStateName = (TextView) findViewById(R.id.task2_empty_state_name);
+        final CardView task2SuccessState = (CardView) findViewById(R.id.task2_success_state);
+        final CardView task8SuccessState = (CardView) findViewById(R.id.task8_success_state);
+        final LinearLayout task2EmptyState = (LinearLayout) findViewById(R.id.task2_empty_state);
+        final TextView task2EmptyStateName = (TextView) findViewById(R.id.task2_empty_state_name);
+        ImageView task4SuccessStateIcon = (ImageView) findViewById(R.id.task4_success_state_icon);
         TextView requestCapacity = (TextView) findViewById(R.id.request_capacity);
         TextView elderlyName = (TextView) findViewById(R.id.elderly_name);
 
+        ImageView requestStatusIcon = (ImageView) findViewById(R.id.request_status_icon);
+
         if (volunteer) {
+            task2EmptyStateName.setText("Hi Jerry!");
+            task4SuccessStateIcon.setVisibility(View.GONE);
             fabAdd.setVisibility(View.GONE);
             fabSearch.setVisibility(View.VISIBLE);
 
@@ -69,7 +90,6 @@ public class Home extends AppCompatActivity {
                 });
             } else {
                 task2EmptyState.setVisibility(View.VISIBLE);
-                task2EmptyStateName.setText("Hi Jerry!");
             }
 
             if (task5) {
@@ -84,29 +104,103 @@ public class Home extends AppCompatActivity {
                     }
                 });
             }
+
+            if (task6b) {
+                task2SuccessState.setVisibility(View.GONE);
+                task2EmptyState.setVisibility(View.VISIBLE);
+            }
+
         } else {
             //caregiver
             fabAdd.setVisibility(View.VISIBLE);
             fabSearch.setVisibility(View.GONE);
 
-            if (task2) {
+            if (!task7) {
+                if (task2) {
+                    task2EmptyState.setVisibility(View.GONE);
+                    task2SuccessState.setVisibility(View.VISIBLE);
+                }
+
+                if (task4) {
+                    task2SuccessState.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(Home.this, ViewRequest.class);
+                            startActivity(intent);
+                        }
+                    });
+                    task4SuccessStateIcon.setVisibility(View.VISIBLE);
+                }
+
+                if (task5) {
+                    requestCapacity.setText("1/1");
+                    task4SuccessStateIcon.setVisibility(View.GONE);
+                }
+
+                if (task6b) {
+                    final View customView = getLayoutInflater().inflate(R.layout.dialog_feedback, null);
+                    ImageView elderlyPic = (ImageView) customView.findViewById(R.id.elderly_pic);
+
+                    LinearLayout task6bEmptyState = (LinearLayout) customView.findViewById(R.id.task6b_empty_state);
+                    TextInputLayout task6bSuccessState = (TextInputLayout) customView.findViewById(R.id.task6b_success_state);
+                    TextView dialogName = (TextView) customView.findViewById(R.id.dialog_name);
+                    TextView dialogGender = (TextView) customView.findViewById(R.id.dialog_gender);
+                    TextView dialogAge = (TextView) customView.findViewById(R.id.dialog_age);
+
+                    task6bEmptyState.setVisibility(View.GONE);
+                    task6bSuccessState.setVisibility(View.VISIBLE);
+
+                    dialogName.setText("Jerry Yan");
+                    dialogGender.setText("Male");
+                    dialogAge.setText("22 years old");
+
+                    Picasso.with(this).load(R.drawable.volunteer).transform(new CircleTransform()).into(elderlyPic);
+                    Thread thread = new Thread() {
+                        @Override
+                        public void run() {
+                            try {
+                                Thread.sleep(500);
+                            } catch (InterruptedException e) {
+                            }
+
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    MaterialDialog dialog = new MaterialDialog.Builder(Home.this)
+                                            .customView(customView, true)
+                                            .title("Feedback")
+                                            .positiveText("Submit")
+                                            .cancelable(false)
+                                            .onPositive(new MaterialDialog.SingleButtonCallback() {
+                                                @Override
+                                                public void onClick(MaterialDialog dialog, DialogAction which) {
+                                                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                                                    editor.putBoolean("task7", true);
+                                                    editor.commit();
+                                                    Toast.makeText(Home.this, "Request ended", Toast.LENGTH_SHORT).show();
+                                                    task2EmptyStateName.setText("Hi Janice!");
+                                                    task2EmptyState.setVisibility(View.VISIBLE);
+                                                    task2SuccessState.setVisibility(View.GONE);
+                                                }
+                                            })
+                                            .show();
+                                }
+                            });
+                        }
+                    };
+                    thread.start();
+
+                }
+            }
+
+            if (task8) {
                 task2EmptyState.setVisibility(View.GONE);
-                task2SuccessState.setVisibility(View.VISIBLE);
+                task8SuccessState.setVisibility(View.VISIBLE);
             }
+        }
 
-            if (task4) {
-                task2SuccessState.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(Home.this, ViewRequest.class);
-                        startActivity(intent);
-                    }
-                });
-            }
-
-            if (task5) {
-                requestCapacity.setText("1/1");
-            }
+        if (task6a) {
+            requestStatusIcon.setVisibility(View.VISIBLE);
         }
 
     }
@@ -157,6 +251,12 @@ public class Home extends AppCompatActivity {
         Intent intent = new Intent(this, ViewRequest.class);
         startActivity(intent);
     }
+
+    public void goToViewRecurringRequest(View view) {
+        Intent intent = new Intent(this, ViewRecurringRequest.class);
+        startActivity(intent);
+    }
+
 
 
     public void goToSearch(View view) {

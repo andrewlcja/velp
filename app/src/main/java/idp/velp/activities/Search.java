@@ -46,6 +46,8 @@ public class Search extends AppCompatActivity {
     private CardView task3SuccessState;
     private LinearLayout task3EmptyState;
 
+    private CardView task8SuccessState;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,6 +71,8 @@ public class Search extends AppCompatActivity {
         task3SuccessState = (CardView) findViewById(R.id.task3_success_state);
         task3EmptyState = (LinearLayout) findViewById(R.id.task3_empty_state);
 
+        task8SuccessState = (CardView) findViewById(R.id.task8_success_state);
+
         searchSlidingLayout.addPanelSlideListener(new SlidingUpPanelLayout.PanelSlideListener() {
             @Override
             public void onPanelSlide(View panel, float slideOffset) {
@@ -82,6 +86,9 @@ public class Search extends AppCompatActivity {
                     if (searchStartDate.getText().toString().equals("24 Oct 2016") && searchEndDate.getText().toString().equals("31 Oct 2016") && searchLocation.getText().toString().equals("Harbourfront")) {
                         task3EmptyState.setVisibility(View.GONE);
                         task3SuccessState.setVisibility(View.VISIBLE);
+                    } else if (searchStartDate.getText().toString().equals("24 Oct 2016") && searchEndDate.getText().toString().equals("31 Oct 2016") && searchLocation.getText().toString().equals("Hougang")) {
+                        task8SuccessState.setVisibility(View.VISIBLE);
+                        task3EmptyState.setVisibility(View.GONE);
                     } else {
                         task3SuccessState.setVisibility(View.GONE);
                         task3EmptyState.setVisibility(View.VISIBLE);
@@ -167,7 +174,7 @@ public class Search extends AppCompatActivity {
     }
 
     public void showLocationOptions(View view) {
-        String[] options = {"Ang Mo Kio", "Bukit Batok", "Bukit Panjang", "Choa Chu Kang", "Clementi", "Harbourfront", "Kallang", "Pasir Ris", "Punggol", "Sengkang", "Serangoon", "Tampines", "Toa Payoh"};
+        String[] options = {"Ang Mo Kio", "Bukit Batok", "Bukit Panjang", "Choa Chu Kang", "Clementi", "Harbourfront", "Hougang", "Kallang", "Pasir Ris", "Punggol", "Sengkang", "Serangoon", "Tampines", "Toa Payoh"};
 
         new MaterialDialog.Builder(this)
                 .items(options)
@@ -183,6 +190,11 @@ public class Search extends AppCompatActivity {
 
     public void goToViewSearchRequest(View view) {
         Intent intent = new Intent(this, ViewSearchRequest.class);
+        startActivity(intent);
+    }
+
+    public void goToViewSearchRecurringRequest(View view) {
+        Intent intent = new Intent(this, ViewSearchRecurringRequest.class);
         startActivity(intent);
     }
 
