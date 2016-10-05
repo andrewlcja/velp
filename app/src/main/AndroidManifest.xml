@@ -25,7 +25,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".activities.Profile"
+            android:name=".activities.CaregiverProfile"
             android:label="@string/title_activity_profile"
             android:theme="@style/AppTheme" />
         <activity android:name=".activities.ElderlyProfile" />
@@ -36,7 +36,12 @@
         <activity
             android:name=".activities.CreateRequest"
             android:label="@string/title_activity_create_request"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
+        <activity android:name=".activities.ViewRequest" />
+        <activity android:name=".activities.VolunteerProfile" />
+        <activity android:name=".activities.Search" />
+        <activity android:name=".activities.ViewSearchRequest" />
+        <activity android:name=".activities.ViewVolunteeredRequest"></activity>
     </application>
 
 </manifest>

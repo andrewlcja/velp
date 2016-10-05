@@ -15,10 +15,12 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import org.w3c.dom.Text;
+
 import idp.velp.R;
 import idp.velp.util.CircleTransform;
 
-public class ElderlyProfile extends AppCompatActivity {
+public class VolunteerProfile extends AppCompatActivity {
     private SharedPreferences sharedPreferences;
     private boolean task4;
     private boolean volunteer;
@@ -26,13 +28,13 @@ public class ElderlyProfile extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_elderly_profile);
+        setContentView(R.layout.activity_volunteer_profile);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_layout);
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Tan Siew Mei");
+        getSupportActionBar().setTitle("Jerry Yan");
 
         //retrieve shared preferences
         sharedPreferences = getSharedPreferences("prefs", Context.MODE_PRIVATE);
@@ -40,22 +42,24 @@ public class ElderlyProfile extends AppCompatActivity {
         task4 = sharedPreferences.getBoolean("task4", false);
         volunteer = sharedPreferences.getBoolean("volunteer", false);
 
-        ImageView elderlyPic = (ImageView) findViewById(R.id.elderly_pic);
-        Picasso.with(this).load(R.drawable.elderly).transform(new CircleTransform()).into(elderlyPic);
+        ImageView volunteerPic = (ImageView) findViewById(R.id.volunteer_pic);
+        Picasso.with(this).load(R.drawable.volunteer).transform(new CircleTransform()).into(volunteerPic);
 
-        TextView elderlyNRIC = (TextView) findViewById(R.id.elderly_nric);
-        TextView elderlyNRICLabel = (TextView) findViewById(R.id.elderly_nric_label);
-        TextView elderlyDOB = (TextView) findViewById(R.id.elderly_dob);
-        TextView elderlyDOBLabel = (TextView) findViewById(R.id.elderly_dob_label);
-        View elderlyDOBDivider = findViewById(R.id.elderly_dob_divider);
+        TextView volunteerHeader = (TextView) findViewById(R.id.volunteer_header);
+        TextView volunteerNRIC = (TextView) findViewById(R.id.volunteer_nric);
+        TextView volunteerNRICLabel = (TextView) findViewById(R.id.volunteer_nric_label);
+        TextView volunteerDOB = (TextView) findViewById(R.id.volunteer_dob);
+        TextView volunteerDOBLabel = (TextView) findViewById(R.id.volunteer_dob_label);
+        View volunteerDOBDivider = findViewById(R.id.volunteer_dob_divider);
 
-        if (volunteer && task4) {
-            elderlyNRIC.setText("77 years old");
-            elderlyNRICLabel.setText("Age");
+        if (!volunteer && task4) {
+            volunteerHeader.setText("Basic Information");
+            volunteerNRIC.setText("22 years old");
+            volunteerNRICLabel.setText("Age");
 
-            elderlyDOB.setVisibility(View.GONE);
-            elderlyDOBLabel.setVisibility(View.GONE);
-            elderlyDOBDivider.setVisibility(View.GONE);
+            volunteerDOB.setVisibility(View.GONE);
+            volunteerDOBLabel.setVisibility(View.GONE);
+            volunteerDOBDivider.setVisibility(View.GONE);
         }
     }
 
@@ -85,4 +89,5 @@ public class ElderlyProfile extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
 }

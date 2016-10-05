@@ -50,6 +50,7 @@
                             android:textColor="@color/colorPrimary"
                             android:textStyle="bold" />
                         <TextView
+                            android:id="@+id/elderly_nric"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="16dp"
@@ -57,6 +58,7 @@
                             android:textColor="@android:color/black" />
 
                         <TextView
+                            android:id="@+id/elderly_nric_label"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="NRIC"
@@ -83,6 +85,7 @@
                     android:background="@color/colorTertiary" />
 
                 <TextView
+                    android:id="@+id/elderly_dob"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
@@ -91,14 +94,16 @@
                     android:textColor="@android:color/black" />
 
                 <TextView
+                    android:id="@+id/elderly_dob_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
                     android:text="DOB"
                     android:textColor="@color/colorLabel"
-                    android:textSize="14dp" />
+                    android:textSize="14sp" />
 
                 <View
+                    android:id="@+id/elderly_dob_divider"
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
                     android:layout_marginTop="10dp"
@@ -133,7 +138,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
                     android:layout_marginTop="10dp"
-                    android:text="30 HarbourFront Avenue #11-11\nS123030"
+                    android:text="30 Harbourfront Avenue #11-11\nS123030"
                     android:textColor="@android:color/black" />
 
                 <TextView

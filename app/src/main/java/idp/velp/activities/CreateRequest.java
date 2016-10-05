@@ -48,7 +48,6 @@ public class CreateRequest extends AppCompatActivity {
                 return true;
 
             case R.id.action_submit:
-
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putBoolean("task2", true);
                 editor.commit();

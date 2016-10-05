@@ -35,5 +35,5 @@ dependencies {
     compile 'com.borax12.materialdaterangepicker:library:1.6'
     compile 'com.github.rey5137:material:1.2.2'
     compile 'com.yalantis:ucrop:1.5.0'
-    compile 'com.sothree.slidinguppanel:library:3.2.1'
+    compile 'com.sothree.slidinguppanel:library:3.3.1'
 }
