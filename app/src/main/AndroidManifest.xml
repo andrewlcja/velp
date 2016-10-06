@@ -43,7 +43,10 @@
         <activity android:name=".activities.ViewSearchRequest" />
         <activity android:name=".activities.ViewVolunteeredRequest" />
         <activity android:name=".activities.ViewRecurringRequest" />
-        <activity android:name=".activities.ViewSearchRecurringRequest"></activity>
+        <activity android:name=".activities.ViewSearchRecurringRequest" />
+        <activity android:name=".activities.ViewVolunteeredRecurringRequest" />
+        <activity android:name=".activities.FriendProfile" />
+        <activity android:name=".activities.EditRequest"></activity>
     </application>
 
 </manifest>

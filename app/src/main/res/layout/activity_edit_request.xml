@@ -2,16 +2,17 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/create_request_layout"
+    android:id="@+id/edit_request_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:focusable="true"
     android:focusableInTouchMode="true"
-    tools:context="idp.velp.activities.CreateRequest">
+    tools:context="idp.velp.activities.EditRequest">
 
     <include
         android:id="@+id/toolbar_layout"
         layout="@layout/toolbar" />
+
 
     <ScrollView
         android:layout_width="match_parent"
@@ -59,6 +60,7 @@
                     android:layout_height="wrap_content"
                     android:hint="Type"
                     android:inputType="textEmailAddress"
+                    android:text="Miscellaneous"
                     android:theme="@style/SecondaryEditTextTheme" />
             </android.support.design.widget.TextInputLayout>
 
@@ -76,9 +78,10 @@
                     style="@style/SeniorTheme"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:onClick="showDatePicker"
                     android:hint="Date"
                     android:inputType="text"
+                    android:onClick="showDatePicker"
+                    android:text="28 Nov 2016"
                     android:theme="@style/SecondaryEditTextTheme" />
             </android.support.design.widget.TextInputLayout>
 
@@ -105,6 +108,7 @@
                         android:hint="Start Time"
                         android:inputType="text"
                         android:onClick="showTimePicker"
+                        android:text="2:00pm"
                         android:theme="@style/SecondaryEditTextTheme" />
                 </android.support.design.widget.TextInputLayout>
 
@@ -122,8 +126,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="End Time"
-                        android:onClick="showTimePicker"
                         android:inputType="text"
+                        android:onClick="showTimePicker"
+                        android:text="4:00pm"
                         android:theme="@style/SecondaryEditTextTheme" />
                 </android.support.design.widget.TextInputLayout>
             </LinearLayout>
@@ -144,6 +149,7 @@
                     android:layout_height="wrap_content"
                     android:hint="Location"
                     android:inputType="text"
+                    android:text="Hougang Community Centre"
                     android:theme="@style/SecondaryEditTextTheme" />
             </android.support.design.widget.TextInputLayout>
 
@@ -175,20 +181,18 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/request_number"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:text="1"
+                        android:text="2"
                         android:textColor="@android:color/black"
                         android:textSize="20sp" />
 
                     <TextView
-                        android:id="@+id/request_number_label"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:text=" volunteer"
+                        android:text=" volunteers"
                         android:textColor="@android:color/black"
                         android:textSize="20sp" />
                 </LinearLayout>
@@ -198,8 +202,8 @@
                     android:layout_height="40dp"
                     android:layout_gravity="center_vertical"
                     android:background="@drawable/circle_request"
-                    android:scaleType="centerInside"
                     android:onClick="decrease"
+                    android:scaleType="centerInside"
                     android:src="@drawable/ic_remove"
                     android:tint="@color/colorPrimary" />
 
@@ -209,8 +213,8 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="7dp"
                     android:background="@drawable/circle_request"
-                    android:scaleType="centerInside"
                     android:onClick="increase"
+                    android:scaleType="centerInside"
                     android:src="@drawable/ic_add"
                     android:tint="@color/colorPrimary" />
             </LinearLayout>
@@ -288,6 +292,7 @@
                         android:hint="Repeat"
                         android:inputType="text"
                         android:onClick="showRepeatOptions"
+                        android:text="Every Month"
                         android:theme="@style/SecondaryEditTextTheme" />
                 </android.support.design.widget.TextInputLayout>
 
@@ -305,8 +310,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Until"
-                        android:onClick="showDatePicker"
                         android:inputType="text"
+                        android:text="31 Dec 2016"
                         android:theme="@style/SecondaryEditTextTheme" />
                 </android.support.design.widget.TextInputLayout>
             </LinearLayout>
@@ -331,6 +336,7 @@
                     android:hint="Additional Information"
                     android:inputType="textCapSentences"
                     android:maxLength="500"
+                    android:text="Volunteer needed to accompany elderly to attend Art and Craft workshop"
                     android:theme="@style/SecondaryEditTextTheme" />
             </android.support.design.widget.TextInputLayout>
 

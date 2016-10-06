@@ -245,6 +245,7 @@
                         android:orientation="horizontal">
 
                         <TextView
+                            android:id="@+id/task9_elderly_name"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -257,7 +258,7 @@
                             android:layout_width="22dp"
                             android:layout_height="22dp"
                             android:layout_gravity="bottom"
-                            android:src="@drawable/ic_plus_one"
+                            android:src="@drawable/ic_exposure_plus_2"
                             android:tint="@color/colorPrimary"
                             android:visibility="gone" />
                     </LinearLayout>

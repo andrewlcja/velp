@@ -62,7 +62,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="NRIC"
-                    android:inputType="textEmailAddress"
+                    android:inputType="textCapCharacters"
+                    android:maxLength="9"
                     android:theme="@style/SecondaryEditTextTheme" />
             </android.support.design.widget.TextInputLayout>
 
@@ -81,8 +82,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="DOB"
-                    android:inputType="number"
-                    android:maxLength="8"
+                    android:inputType="text"
                     android:theme="@style/SecondaryEditTextTheme" />
             </android.support.design.widget.TextInputLayout>
 
@@ -102,7 +102,7 @@
                     android:layout_height="wrap_content"
                     android:hint="Contact No"
                     android:inputType="number"
-                    android:maxLength="6"
+                    android:maxLength="8"
                     android:theme="@style/SecondaryEditTextTheme" />
             </android.support.design.widget.TextInputLayout>
 

@@ -3,11 +3,9 @@ package idp.velp.activities;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -32,7 +30,7 @@ import java.util.Date;
 
 import idp.velp.R;
 
-public class CreateRequest extends AppCompatActivity {
+public class EditRequest extends AppCompatActivity {
     private SharedPreferences sharedPreferences;
     private EditText repeatText;
     private EditText requestElderly;
@@ -44,17 +42,19 @@ public class CreateRequest extends AppCompatActivity {
     private EditText requestAdditionalInfo;
     private TextView requestNumber;
     private TextView requestNumberLabel;
-    private boolean task2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_request);
+        setContentView(R.layout.activity_edit_request);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_layout);
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Create Request");
+        getSupportActionBar().setTitle("Edit Request");
+        //retrieve shared preferences
+        sharedPreferences = getSharedPreferences("prefs", Context.MODE_PRIVATE);
 
         repeatText = (EditText) findViewById(R.id.request_repeat);
         requestElderly = (EditText) findViewById(R.id.request_elderly);
@@ -148,13 +148,10 @@ public class CreateRequest extends AppCompatActivity {
         requestAdditionalInfo.setHorizontallyScrolling(false);
         requestAdditionalInfo.setImeOptions(EditorInfo.IME_ACTION_DONE);
 
-        //retrieve shared preferences
-        sharedPreferences = getSharedPreferences("prefs", Context.MODE_PRIVATE);
-        task2 = sharedPreferences.getBoolean("task2", false);
 
         //remove focus
-        RelativeLayout createRequestLayout = (RelativeLayout) findViewById(R.id.create_request_layout);
-        if (createRequestLayout.requestFocus()) {
+        RelativeLayout editRequestLayout = (RelativeLayout) findViewById(R.id.edit_request_layout);
+        if (editRequestLayout.requestFocus()) {
             getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
         }
     }
@@ -305,13 +302,10 @@ public class CreateRequest extends AppCompatActivity {
 
             case R.id.action_submit:
                 SharedPreferences.Editor editor = sharedPreferences.edit();
-                if (!task2) {
-                    editor.putBoolean("task2", true);
-                } else {
-                    editor.putBoolean("task8", true);
-                }
+                editor.putBoolean("task11", true);
                 editor.commit();
-                Intent intent2 = new Intent(this, Home.class);
+                Intent intent2 = new Intent(this, ViewRecurringRequest.class);
+                intent2.putExtra("fromEdit", true);
                 intent2.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent2);
                 finish();
@@ -326,5 +320,4 @@ public class CreateRequest extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-
 }

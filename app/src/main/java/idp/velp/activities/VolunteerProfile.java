@@ -63,10 +63,9 @@ public class VolunteerProfile extends AppCompatActivity {
             volunteerDOB.setVisibility(View.GONE);
             volunteerDOBLabel.setVisibility(View.GONE);
             volunteerDOBDivider.setVisibility(View.GONE);
-
-            if (task7) {
-                volunteerHours.setText("17.5");
-            }
+        }
+        if (task7) {
+            volunteerHours.setText("17.5");
         }
     }
 

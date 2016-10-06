@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TextInputLayout;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
@@ -13,6 +14,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -35,6 +38,10 @@ public class Home extends AppCompatActivity {
     private boolean task6b;
     private boolean task7;
     private boolean task8;
+    private boolean task9;
+    private boolean task10;
+    private boolean task11;
+    private boolean task11b;
     private boolean volunteer;
 
     @Override
@@ -55,6 +62,10 @@ public class Home extends AppCompatActivity {
         task6b = sharedPreferences.getBoolean("task6b", false);
         task7 = sharedPreferences.getBoolean("task7", false);
         task8 = sharedPreferences.getBoolean("task8", false);
+        task9 = sharedPreferences.getBoolean("task9", false);
+        task10 = sharedPreferences.getBoolean("task10", false);
+        task11 = sharedPreferences.getBoolean("task11", false);
+        task11b = sharedPreferences.getBoolean("task11b", false);
         volunteer = sharedPreferences.getBoolean("volunteer", false);
 
         FloatingActionButton fabAdd = (FloatingActionButton) findViewById(R.id.fab_add);
@@ -65,8 +76,13 @@ public class Home extends AppCompatActivity {
         final LinearLayout task2EmptyState = (LinearLayout) findViewById(R.id.task2_empty_state);
         final TextView task2EmptyStateName = (TextView) findViewById(R.id.task2_empty_state_name);
         ImageView task4SuccessStateIcon = (ImageView) findViewById(R.id.task4_success_state_icon);
+        ImageView task9SuccessStateIcon = (ImageView) findViewById(R.id.task9_success_state_icon);
         TextView requestCapacity = (TextView) findViewById(R.id.request_capacity);
         TextView elderlyName = (TextView) findViewById(R.id.elderly_name);
+        TextView task9ElderlyName = (TextView) findViewById(R.id.task9_elderly_name);
+
+
+        TextView recurringRequestCapacity = (TextView) findViewById(R.id.recurring_request_capacity);
 
         ImageView requestStatusIcon = (ImageView) findViewById(R.id.request_status_icon);
 
@@ -110,6 +126,73 @@ public class Home extends AppCompatActivity {
                 task2EmptyState.setVisibility(View.VISIBLE);
             }
 
+            if (task9) {
+                task2EmptyState.setVisibility(View.GONE);
+                task8SuccessState.setVisibility(View.VISIBLE);
+                task9ElderlyName.setText("Pending approval");
+
+                task8SuccessState.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(Home.this, ViewSearchRecurringRequest.class);
+                        startActivity(intent);
+                    }
+                });
+            }
+
+            if (task10){
+                recurringRequestCapacity.setText("2/2");
+                task9ElderlyName.setText("Tan Siew Mei");
+
+                task8SuccessState.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(Home.this, ViewVolunteeredRecurringRequest.class);
+                        startActivity(intent);
+                    }
+                });
+            }
+
+            if (task11 && !task11b) {
+                final View customView = getLayoutInflater().inflate(R.layout.dialog_edit, null);
+                ImageView elderlyPic = (ImageView) customView.findViewById(R.id.elderly_pic);
+
+                Picasso.with(this).load(R.drawable.elderly).transform(new CircleTransform()).into(elderlyPic);
+                Thread thread = new Thread() {
+                    @Override
+                    public void run() {
+                        try {
+                            Thread.sleep(500);
+                        } catch (InterruptedException e) {
+                        }
+
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                MaterialDialog dialog = new MaterialDialog.Builder(Home.this)
+                                        .customView(customView, true)
+                                        .title("Request Updated")
+                                        .positiveText("Yes")
+                                        .negativeText("No")
+                                        .cancelable(false)
+                                        .onPositive(new MaterialDialog.SingleButtonCallback() {
+                                            @Override
+                                            public void onClick(MaterialDialog dialog, DialogAction which) {
+                                                SharedPreferences.Editor editor = sharedPreferences.edit();
+                                                editor.putBoolean("task11b", true);
+                                                editor.commit();
+                                                Toast.makeText(Home.this, "Response submitted", Toast.LENGTH_SHORT).show();
+                                            }
+                                        })
+                                        .show();
+                            }
+                        });
+                    }
+                };
+                thread.start();
+
+            }
+
         } else {
             //caregiver
             fabAdd.setVisibility(View.VISIBLE);
@@ -146,6 +229,7 @@ public class Home extends AppCompatActivity {
                     TextView dialogName = (TextView) customView.findViewById(R.id.dialog_name);
                     TextView dialogGender = (TextView) customView.findViewById(R.id.dialog_gender);
                     TextView dialogAge = (TextView) customView.findViewById(R.id.dialog_age);
+                    EditText dialogComments = (EditText) customView.findViewById(R.id.dialog_comments);
 
                     task6bEmptyState.setVisibility(View.GONE);
                     task6bSuccessState.setVisibility(View.VISIBLE);
@@ -153,6 +237,11 @@ public class Home extends AppCompatActivity {
                     dialogName.setText("Jerry Yan");
                     dialogGender.setText("Male");
                     dialogAge.setText("22 years old");
+
+                    dialogComments.setMaxLines(20);
+                    dialogComments.setHorizontallyScrolling(false);
+                    dialogComments.setImeOptions(EditorInfo.IME_ACTION_DONE);
+
 
                     Picasso.with(this).load(R.drawable.volunteer).transform(new CircleTransform()).into(elderlyPic);
                     Thread thread = new Thread() {
@@ -196,6 +285,15 @@ public class Home extends AppCompatActivity {
             if (task8) {
                 task2EmptyState.setVisibility(View.GONE);
                 task8SuccessState.setVisibility(View.VISIBLE);
+            }
+
+            if (task9) {
+                task9SuccessStateIcon.setVisibility(View.VISIBLE);
+            }
+
+            if (task10){
+                recurringRequestCapacity.setText("2/2");
+                task9SuccessStateIcon.setVisibility(View.GONE);
             }
         }
 
@@ -256,7 +354,6 @@ public class Home extends AppCompatActivity {
         Intent intent = new Intent(this, ViewRecurringRequest.class);
         startActivity(intent);
     }
-
 
 
     public void goToSearch(View view) {

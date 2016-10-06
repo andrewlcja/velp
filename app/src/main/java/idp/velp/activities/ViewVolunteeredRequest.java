@@ -11,7 +11,9 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -100,6 +102,10 @@ public class ViewVolunteeredRequest extends AppCompatActivity {
             View customView = getLayoutInflater().inflate(R.layout.dialog_feedback, null);
             ImageView elderlyPic = (ImageView) customView.findViewById(R.id.elderly_pic);
             Picasso.with(this).load(R.drawable.elderly).transform(new CircleTransform()).into(elderlyPic);
+            EditText dialogComments = (EditText) customView.findViewById(R.id.dialog_comments);
+            dialogComments.setMaxLines(20);
+            dialogComments.setHorizontallyScrolling(false);
+            dialogComments.setImeOptions(EditorInfo.IME_ACTION_DONE);
             MaterialDialog dialog = new MaterialDialog.Builder(ViewVolunteeredRequest.this)
                     .customView(customView, true)
                     .title("Feedback")
